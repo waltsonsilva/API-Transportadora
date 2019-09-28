@@ -1,6 +1,7 @@
 package br.com.transp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,26 +24,44 @@ public class TransportadoraServiceImpl implements ITransportadoraService {
 	}
 
 	@Override
-	public Transportadora atualizar(Transportadora entity) {
-		// TODO Auto-generated method stub
+	public Transportadora atualizar(Transportadora transp) {
+		try {
+			Transportadora transportadora = buscarPorId(transp.getCodigoId());
+			if(transportadora != null) {
+				return transpRepo.save(transp);
+			}
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public Transportadora buscarPorId(Long id) throws IllegalAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		if(id <= 0) {
+			throw new IllegalArgumentException("Id não pode ser <= 0");
+		}
+		Optional<Transportadora> transportadora = transpRepo.findById(id);
+		return transportadora.orElseThrow(()->new IllegalAccessException("Id não encontrado"));
 	}
 
 	@Override
 	public void deletarPorID(Long id) {
-		// TODO Auto-generated method stub
-
+		try {
+			buscarPorId(id);
+			transpRepo.deleteById(id);
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Transportadora> buscarPorTodos() {
-		// TODO Auto-generated method stub
+		List<Transportadora> listaTransp = transpRepo.findAll();
+		if(!listaTransp.isEmpty()) {
+			return listaTransp;
+		}
 		return null;
 	}
 
