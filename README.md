@@ -36,7 +36,7 @@
   <li>JAVA
     <ul>
 	<li>Versão: 8</li>
-      <li> <a href="https://docs.oracle.com/javase/8/docs/" target="_blank">Documentação</a> </li>
+      <li> <a href="https://javaee.github.io/javaee-spec/javadocs/" target="_blank">Documentação</a> </li>
     </ul>
   </li>
 </ul>
