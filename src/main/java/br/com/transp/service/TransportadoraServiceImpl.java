@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.transp.beans.Transportadora;
 import br.com.transp.repository.TransportadoraRepository;
+import br.com.transp.specification.TransportadoraSpecification;
 
 @Service
 public class TransportadoraServiceImpl implements ITransportadoraService {
@@ -27,7 +30,7 @@ public class TransportadoraServiceImpl implements ITransportadoraService {
 	public Transportadora atualizar(Transportadora transp) {
 		try {
 			Transportadora transportadora = buscarPorId(transp.getCodigoId());
-			if(transportadora != null) {
+			if (transportadora != null) {
 				return transpRepo.save(transp);
 			}
 		} catch (IllegalAccessException e) {
@@ -39,11 +42,11 @@ public class TransportadoraServiceImpl implements ITransportadoraService {
 
 	@Override
 	public Transportadora buscarPorId(Long id) throws IllegalAccessException {
-		if(id <= 0) {
+		if (id <= 0) {
 			throw new IllegalArgumentException("Id não pode ser <= 0");
 		}
 		Optional<Transportadora> transportadora = transpRepo.findById(id);
-		return transportadora.orElseThrow(()->new IllegalAccessException("Id não encontrado"));
+		return transportadora.orElseThrow(() -> new IllegalAccessException("Id não encontrado"));
 	}
 
 	@Override
@@ -59,8 +62,19 @@ public class TransportadoraServiceImpl implements ITransportadoraService {
 	@Override
 	public List<Transportadora> buscarPorTodos() {
 		List<Transportadora> listaTransp = transpRepo.findAll();
-		if(!listaTransp.isEmpty()) {
+		if (!listaTransp.isEmpty()) {
 			return listaTransp;
+		}
+		return null;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Transportadora> porFiltro(Transportadora transportadora) {
+		if (transportadora != null) {
+			Specification<Transportadora> specification = new TransportadoraSpecification(transportadora);
+			List<Transportadora> transportadoras = transpRepo.findAll(specification);
+			return transportadoras;
 		}
 		return null;
 	}
