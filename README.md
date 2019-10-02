@@ -1,15 +1,42 @@
 # API-Transportadora
-Api transportadora
-
-Api responsável por realizar CRUD da entidade transportadora 
-Foi utilizado Spring boot 2.1.8, Spring Data, JPA/Hibernate, postgresql e lombok
-
-Tecnologias utilizadas
-Maven
-Versão: 4.0.0
-  Documentação
-PostgresSQL
-Versão: 9.6
-  Documentação
 
 
+
+<h3>Tecnologias utilizadas</h3>
+<ul>
+  <li>Maven
+    <ul>
+      <li>Versão: 4.0.0</li>
+      <li> <a href="http://maven.apache.org/" target="_blank">Documentação</a> </li>
+    </ul>
+  </li>
+  <li>PostgresSQL
+    <ul>
+      <li>Versão: 9.6</li>
+      <li> <a href="https://www.postgresql.org/docs/9.6/index.html" target="_blank">Documentação</a> </li>
+    </ul>
+  </li>
+  <li>SPRNG-BOOT
+  <ul>
+      <li>Versão: 2.1.8</li>
+      <li> <a href="https://spring.io/projects/spring-boot" target="_blank">Documentação</a> </li>
+    </ul></li>
+  <li>SQL</li>
+  <li>SPRING-DATA-JPA
+    <ul>
+      <li>Versão: 2.2.0</li>
+      <li> <a href="https://spring.io/projects/spring-data-jpa" target="_blank">Documentação</a> </li>
+    </ul>
+  </li>
+  <li>LOMBOK
+    <ul>
+      <li> <a href="https://projectlombok.org" target="_blank">Documentação</a> </li>
+    </ul>
+  </li>
+  <li>JAVA
+    <ul>
+	<li>Versão: 8</li>
+      <li> <a href="https://docs.oracle.com/javase/8/docs/" target="_blank">Documentação</a> </li>
+    </ul>
+  </li>
+</ul>
